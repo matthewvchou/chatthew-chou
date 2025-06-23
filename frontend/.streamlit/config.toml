@@ -1,8 +1,24 @@
 # .streamlit/config.toml
 
+[server]
+enableStaticServing = true
+
+[[theme.fontFaces]]
+family = "kodemono"
+url = "app/static/KodeMono-Regular.ttf"
+weight = 300
+style = "normal"
+
+[[theme.fontFaces]]
+family = "kodemono"
+url = "app/static/KodeMono-Bold.ttf"
+weight = 700
+style = "normal"
+
 [theme]
 base = "dark"
 primaryColor = "#D98324"
 backgroundColor = "#001128"
 secondaryBackgroundColor = "#2E3549"
 textColor = "#F2F6D0"
+font = "kodemono"

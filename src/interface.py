@@ -1,7 +1,14 @@
+import sys
+sys.path.append('backend')
+from chat import Chat
 import streamlit as st
 import time
 
 st.set_page_config(layout="wide")
+
+# Instantiate and persist Chat object in session state
+if "chatbot" not in st.session_state:
+    st.session_state.chatbot = Chat()
 
 # Initialize navigation state
 if "show_chat" not in st.session_state:
@@ -23,7 +30,6 @@ if not st.session_state.show_chat:
 # Chat Page
 else:
     st.title("Chat-thew Chou")
-
     # Initialize messages
     if "messages" not in st.session_state:
         st.session_state.messages = [
@@ -63,7 +69,7 @@ else:
         st.session_state.messages.append({"role": "user", "content": prompt})
 
         # Chat-thew Response
-        response = f"{prompt}"
+        response = f"{st.session_state.chatbot.sendChat(prompt)}"
 
         def stream_response():
             for char in response:
